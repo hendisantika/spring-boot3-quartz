@@ -1,10 +1,10 @@
 package com.hendisantika.springboot3quartz.exception.base;
 
 import com.hendisantika.springboot3quartz.exception.*;
+import com.hendisantika.springboot3quartz.exception.dto.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

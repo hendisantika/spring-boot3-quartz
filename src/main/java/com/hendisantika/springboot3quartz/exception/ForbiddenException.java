@@ -1,6 +1,6 @@
 package com.hendisantika.springboot3quartz.exception;
 
-import org.hibernate.service.spi.ServiceException;
+import com.hendisantika.springboot3quartz.exception.base.ServiceException;
 
 /**
  * Created by IntelliJ IDEA.
