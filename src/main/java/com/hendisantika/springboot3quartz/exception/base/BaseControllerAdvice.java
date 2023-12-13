@@ -2,6 +2,7 @@ package com.hendisantika.springboot3quartz.exception.base;
 
 import com.hendisantika.springboot3quartz.exception.*;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.service.spi.ServiceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -82,5 +83,13 @@ public class BaseControllerAdvice {
                 String.valueOf(HttpStatus.METHOD_NOT_ALLOWED.value()),
                 "Method Not Allowed. Please verify you request",
                 TIMESTAMP);
+    }
+
+    @ExceptionHandler({Exception.class, ServiceException.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorResponse handleAllExceptions(Exception ex) {
+        log.error(ex.getMessage(), ex.getLocalizedMessage());
+        return new ErrorResponse(
+                String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()), ex.getMessage(), TIMESTAMP);
     }
 }
