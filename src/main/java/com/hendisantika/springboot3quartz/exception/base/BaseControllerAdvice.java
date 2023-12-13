@@ -1,6 +1,7 @@
 package com.hendisantika.springboot3quartz.exception.base;
 
 import com.hendisantika.springboot3quartz.exception.DataNotFoundException;
+import com.hendisantika.springboot3quartz.exception.DuplicateException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.ErrorResponse;
@@ -45,4 +46,10 @@ public class BaseControllerAdvice {
                 String.valueOf(HttpStatus.NOT_FOUND.value()), ex.getMessage(), TIMESTAMP);
     }
 
+    @ExceptionHandler({BadRequestException.class, DuplicateException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleBadRequestException(Exception ex) {
+        return new ErrorResponse(
+                String.valueOf(HttpStatus.BAD_REQUEST.value()), ex.getMessage(), TIMESTAMP);
+    }
 }
