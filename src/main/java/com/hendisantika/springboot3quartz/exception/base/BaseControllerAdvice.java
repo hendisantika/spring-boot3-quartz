@@ -2,6 +2,7 @@ package com.hendisantika.springboot3quartz.exception.base;
 
 import com.hendisantika.springboot3quartz.exception.DataNotFoundException;
 import com.hendisantika.springboot3quartz.exception.DuplicateException;
+import com.hendisantika.springboot3quartz.exception.ForbiddenException;
 import com.hendisantika.springboot3quartz.exception.UnauthorizedException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -59,5 +60,12 @@ public class BaseControllerAdvice {
     public ErrorResponse handleUnauthorizedException(Exception ex) {
         return new ErrorResponse(
                 String.valueOf(HttpStatus.UNAUTHORIZED.value()), ex.getMessage(), TIMESTAMP);
+    }
+
+    @ExceptionHandler({ForbiddenException.class})
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ErrorResponse handleForbiddenException(Exception ex) {
+        return new ErrorResponse(
+                String.valueOf(HttpStatus.FORBIDDEN.value()), ex.getMessage(), TIMESTAMP);
     }
 }
