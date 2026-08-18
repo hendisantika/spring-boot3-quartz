@@ -19,6 +19,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     services:
       mysql:
         image: mysql:9.1.0
